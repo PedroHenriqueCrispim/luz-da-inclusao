@@ -102,15 +102,21 @@
     (function () {
       var PORTAL = 'https://script.google.com/macros/s/AKfycbwONG8yYX2Q9LOJ3ffeqS2h3gIYKaGj71aYM9fMziDqCK9rIM5Pj5aTImEZwTZD_J_y/exec';
       var LINK_BIO = 'https://pedrohenriquecrispim.github.io/luz-da-inclusao/';
+      // Link direto para um conteúdo (?r=entenda/tea). Só aceita letras minúsculas, números e hífens,
+      // no formato "pagina" ou "pagina/conteudo": nunca leva para fora do portal.
+      var rota = '';
+      try { rota = new URLSearchParams(window.location.search).get('r') || ''; } catch (e) { rota = ''; }
+      if (!/^[a-z0-9-]{1,40}(\/[a-z0-9-]{1,80})?$/.test(rota)) rota = '';
+      var DESTINO = rota ? PORTAL + '#' + rota : PORTAL;
       var ua = navigator.userAgent || '';
       var dentroDeApp = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Messenger|TikTok|musical_ly|Bytedance|Line\//i.test(ua);
       var android = /Android/i.test(ua);
       var iphone = /iPhone|iPad|iPod/i.test(ua);
 
-      document.getElementById('link-normal').href = PORTAL;
+      document.getElementById('link-normal').href = DESTINO;
 
       if (!dentroDeApp) {
-        window.location.replace(PORTAL);
+        window.location.replace(DESTINO);
         return;
       }
 
