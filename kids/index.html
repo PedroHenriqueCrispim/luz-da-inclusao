@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luz da Inclusão Kids</title>
+  <meta name="description" content="O cantinho das crianças do Projeto Luz da Inclusão.">
+
+  <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Luz da Inclusão Kids">
+  <meta property="og:description" content="O cantinho das crianças do Projeto Luz da Inclusão: aprender sobre diferenças, amizade e respeito de um jeito leve e divertido.">
+  <meta property="og:image" content="https://pedrohenriquecrispim.github.io/luz-da-inclusao/imagem-compartilhamento.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Lâmpada acesa com uma peça de quebra-cabeça dentro e a frase: Inclusão é enxergar a pessoa antes do diagnóstico.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <meta name="theme-color" content="#0F1B4C">
+
+  <!-- Sem JavaScript: vai direto para o portal -->
+  <noscript><meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbxthzePqYDh3kR_3ixhU4dgfPxcEKLFLH4gAlhWnmxSC4KokIkN-ZrLu4al_SpUBCtW/exec?r=inicio"></noscript>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px;
+      background: radial-gradient(70% 55% at 50% 15%, #24357A 0%, #0F1B4C 70%);
+      color: #FAF5EA; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      text-align: center; line-height: 1.5;
+    }
+    .caixa { width: 100%; max-width: 420px; }
+    .logo { width: 88px; height: 88px; margin: 0 auto 18px; border-radius: 22px; display: block; }
+    h1 { font-size: 1.6rem; line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.02em; }
+    p { margin: 0 0 14px; color: rgba(250, 245, 234, 0.88); }
+    .passos {
+      text-align: left; margin: 18px 0; padding: 16px 18px 16px 38px;
+      border-radius: 16px; background: rgba(250, 245, 234, 0.08);
+    }
+    .passos li { margin: 4px 0; }
+    .passos strong { color: #FFC83D; }
+    .botao {
+      display: flex; align-items: center; justify-content: center; width: 100%;
+      min-height: 52px; margin-top: 10px; padding: 12px 18px; border-radius: 999px;
+      font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer;
+      border: 2px solid transparent; font-family: inherit;
+    }
+    .botao--luz { background: #FFC83D; color: #121633; }
+    .botao--claro { background: transparent; color: #FAF5EA; border-color: rgba(250, 245, 234, 0.5); }
+    .aviso { min-height: 1.5em; margin-top: 10px; font-size: 0.95rem; color: #FFC83D; }
+    .seta {
+      position: fixed; top: 10px; right: 14px; display: flex; align-items: center; gap: 6px;
+      color: #FFC83D; font-weight: 700; animation: pulo 1.2s ease-in-out infinite;
+    }
+    .passos--destaque { font-size: 1.08rem; border: 2px solid rgba(255, 200, 61, 0.6); }
+    @keyframes pulo { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(4px, -4px); } }
+    @media (prefers-reduced-motion: reduce) { .seta { animation: none; } }
+    [hidden] { display: none !important; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #FFC83D; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <div class="seta" id="seta" hidden aria-hidden="true">
+    <span class="seta__texto">Toque aqui</span>
+    <svg viewBox="0 0 40 40" width="40" height="40"><path d="M8 32 L30 10 M14 10 H30 V26" fill="none" stroke="#FFC83D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+
+  <main class="caixa">
+    <img class="logo" src="../favicon.png" alt="">
+
+    <!-- Navegador normal: abre o portal sozinho -->
+    <div id="normal">
+      <h1>Luz da Inclusão Kids</h1>
+      <p>Abrindo o portal…</p>
+      <a class="botao botao--luz" id="link-normal" href="#">Toque aqui se não abrir sozinho</a>
+    </div>
+
+    <!-- Dentro do Instagram/Facebook/TikTok: pede para abrir no navegador -->
+    <div id="app" hidden>
+      <h1>Abra no seu navegador 💡</h1>
+      <p>O navegador do Instagram não consegue mostrar o portal. Abra no Chrome ou no Safari para ver tudo certinho.</p>
+
+      <a class="botao botao--luz" id="abrir-android" href="#" hidden>Abrir no Chrome</a>
+
+      <ol class="passos" id="passos-iphone" hidden>
+        <li>Toque nos <strong>três pontinhos (⋯)</strong> lá em cima, no canto direito.</li>
+        <li>Escolha <strong>Abrir no navegador externo</strong>.</li>
+        <li>Pronto: o portal abre no Safari. 💡</li>
+      </ol>
+      <ol class="passos" id="passos-android" hidden>
+        <li>Toque nos <strong>três pontinhos (⋮)</strong> no canto superior direito.</li>
+        <li>Escolha <strong>Abrir no Chrome</strong> ou <strong>Abrir no navegador</strong>.</li>
+      </ol>
+
+      <button class="botao botao--claro" id="copiar" type="button">Copiar o link</button>
+      <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var PORTAL = 'https://script.google.com/macros/s/AKfycbxthzePqYDh3kR_3ixhU4dgfPxcEKLFLH4gAlhWnmxSC4KokIkN-ZrLu4al_SpUBCtW/exec';
+      var LINK_BIO = 'https://pedrohenriquecrispim.github.io/luz-da-inclusao/kids/';
+      // Link direto para um conteúdo (?r=entenda/tea). Só aceita letras minúsculas, números e hífens,
+      // no formato "pagina" ou "pagina/conteudo": nunca leva para fora do portal.
+      var rota = '';
+      try { rota = new URLSearchParams(window.location.search).get('r') || ''; } catch (e) { rota = ''; }
+      if (!/^[a-z0-9-]{1,40}(\/[a-z0-9-]{1,80})?$/.test(rota)) rota = '';
+      var DESTINO = PORTAL + '?r=' + (rota || 'inicio');
+      var ua = navigator.userAgent || '';
+      var dentroDeApp = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Messenger|TikTok|musical_ly|Bytedance|Line\//i.test(ua);
+      var android = /Android/i.test(ua);
+      var iphone = /iPhone|iPad|iPod/i.test(ua);
+
+      document.getElementById('link-normal').href = DESTINO;
+
+      if (!dentroDeApp) {
+        window.location.replace(DESTINO);
+        return;
+      }
+
+      document.getElementById('normal').hidden = true;
+      document.getElementById('app').hidden = false;
+
+      if (android) {
+        var semProtocolo = DESTINO.replace(/^https:\/\//, '');
+        var botaoAndroid = document.getElementById('abrir-android');
+        botaoAndroid.href = 'intent://' + semProtocolo + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(DESTINO) + ';end';
+        botaoAndroid.hidden = false;
+        document.getElementById('passos-android').hidden = false;
+      } else if (iphone) {
+        document.getElementById('seta').hidden = false;
+        document.getElementById('passos-iphone').hidden = false;
+        document.getElementById('passos-iphone').classList.add('passos--destaque');
+      } else {
+        document.getElementById('passos-android').hidden = false;
+      }
+
+      document.getElementById('copiar').addEventListener('click', function () {
+        var aviso = document.getElementById('aviso');
+        function ok() { aviso.textContent = 'Link copiado! Cole no Chrome ou no Safari.'; }
+        function falhou() { aviso.textContent = 'Copie este link: ' + LINK_BIO; }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(LINK_BIO).then(ok, falhou);
+        } else {
+          falhou();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
