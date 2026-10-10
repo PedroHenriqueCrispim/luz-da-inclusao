@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Luz da Inclusão Kids</title>
-  <meta name="description" content="O cantinho das crianças do Projeto Luz da Inclusão.">
+  <!-- Segurança: esta página só pode usar o próprio script, o próprio estilo e imagens do próprio site -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Projeto Luz da Inclusão Kids</title>
+  <meta name="description" content="Histórias da Bíblia, jogos, desenhos e atividades para crianças aprenderem sobre amizade, diferenças e inclusão.">
 
   <!-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook...) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="Luz da Inclusão Kids">
-  <meta property="og:description" content="O cantinho das crianças do Projeto Luz da Inclusão: aprender sobre diferenças, amizade e respeito de um jeito leve e divertido.">
+  <meta property="og:title" content="Projeto Luz da Inclusão Kids">
+  <meta property="og:description" content="Histórias da Bíblia, jogos, desenhos e atividades para aprender sobre amizade, diferenças e o amor de Deus. Aqui todo mundo tem lugar.">
+  <meta property="og:url" content="https://pedrohenriquecrispim.github.io/luz-da-inclusao/kids/">
   <meta property="og:image" content="https://pedrohenriquecrispim.github.io/luz-da-inclusao/imagem-compartilhamento.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -48,7 +52,7 @@
     }
     .botao--luz { background: #FFC83D; color: #121633; }
     .botao--claro { background: transparent; color: #FAF5EA; border-color: rgba(250, 245, 234, 0.5); }
-    .aviso { min-height: 1.5em; margin-top: 10px; font-size: 0.95rem; color: #FFC83D; }
+    .aviso { min-height: 1.5em; margin-top: 10px; font-size: 0.95rem; color: #FFC83D; word-break: break-all; }
     .seta {
       position: fixed; top: 10px; right: 14px; display: flex; align-items: center; gap: 6px;
       color: #FFC83D; font-weight: 700; animation: pulo 1.2s ease-in-out infinite;
@@ -71,7 +75,7 @@
 
     <!-- Navegador normal: abre o portal sozinho -->
     <div id="normal">
-      <h1>Luz da Inclusão Kids</h1>
+      <h1>Projeto Luz da Inclusão Kids</h1>
       <p>Abrindo o portal…</p>
       <a class="botao botao--luz" id="link-normal" href="#">Toque aqui se não abrir sozinho</a>
     </div>
@@ -102,12 +106,13 @@
     (function () {
       var PORTAL = 'https://script.google.com/macros/s/AKfycbxthzePqYDh3kR_3ixhU4dgfPxcEKLFLH4gAlhWnmxSC4KokIkN-ZrLu4al_SpUBCtW/exec';
       var LINK_BIO = 'https://pedrohenriquecrispim.github.io/luz-da-inclusao/kids/';
-      // Link direto para um conteúdo (?r=entenda/tea). Só aceita letras minúsculas, números e hífens,
-      // no formato "pagina" ou "pagina/conteudo": nunca leva para fora do portal.
+      // Link direto para um material do Kids, por exemplo ?r=c_b04 (história) ou ?r=k_jogar (seção).
+      // Só aceita letras minúsculas, números, hífen e sublinhado: nunca leva para fora do portal.
       var rota = '';
       try { rota = new URLSearchParams(window.location.search).get('r') || ''; } catch (e) { rota = ''; }
-      if (!/^[a-z0-9-]{1,40}(\/[a-z0-9-]{1,80})?$/.test(rota)) rota = '';
+      if (!/^[a-z0-9_-]{1,80}$/.test(rota)) rota = '';
       var DESTINO = PORTAL + '?r=' + (rota || 'inicio');
+      var LINK_COPIAR = LINK_BIO + (rota ? '?r=' + rota : '');
       var ua = navigator.userAgent || '';
       var dentroDeApp = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Messenger|TikTok|musical_ly|Bytedance|Line\//i.test(ua);
       var android = /Android/i.test(ua);
@@ -140,9 +145,9 @@
       document.getElementById('copiar').addEventListener('click', function () {
         var aviso = document.getElementById('aviso');
         function ok() { aviso.textContent = 'Link copiado! Cole no Chrome ou no Safari.'; }
-        function falhou() { aviso.textContent = 'Copie este link: ' + LINK_BIO; }
+        function falhou() { aviso.textContent = 'Copie este link: ' + LINK_COPIAR; }
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(LINK_BIO).then(ok, falhou);
+          navigator.clipboard.writeText(LINK_COPIAR).then(ok, falhou);
         } else {
           falhou();
         }
