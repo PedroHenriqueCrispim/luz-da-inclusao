@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://projetoluzdainclusao.com.br/sitemap.xml
