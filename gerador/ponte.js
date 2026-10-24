@@ -16,6 +16,16 @@
   var BASE = SITE.base;
   var ROTA_OK = /^[a-z0-9-]{1,40}(\/[a-z0-9-]{1,80})?$/;
   var PRE_MONTAGEM = /[?&]prerender=1(&|$)/.test(location.search);
+
+  /* Links antigos no formato ?r=entenda/tea (bio e WhatsApp) vão para o endereço novo. */
+  var antigo = /[?&]r=([^&#]+)/.exec(location.search);
+  if (antigo && !PRE_MONTAGEM) {
+    var r = decodeURIComponent(antigo[1]).replace(/^\/+|\/+$/g, '');
+    if (r === 'inicio' || ROTA_OK.test(r)) {
+      location.replace((r === 'inicio' ? BASE : BASE + r + '/') + location.hash);
+      return;
+    }
+  }
   var API_OK = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/;
 
   /* Envios para o Apps Script (desligados durante a pré-montagem, para não contar visitas falsas). */
