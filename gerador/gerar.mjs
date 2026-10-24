@@ -120,14 +120,20 @@ function listarRotas(d, portal) {
 /* ------------------------------------------------------------------ 2. Arquivos do site */
 
 /** Política de segurança: o navegador só carrega o que vem de origens permitidas. */
+// VLibras (tradutor de Libras do governo federal) precisa carregar o próprio código e o avatar 3D
+// a partir de vlibras.gov.br. Liberamos SÓ esse endereço oficial ('wasm-unsafe-eval' é exigido pelo
+// avatar 3D; ele não libera o eval comum de JavaScript).
+const VLIBRAS = 'https://vlibras.gov.br https://*.vlibras.gov.br';
 const CSP = [
   "default-src 'self'",
-  "script-src 'self'",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src https://fonts.gstatic.com",
-  "img-src 'self' data: https:",
-  "connect-src 'self' https://script.google.com https://script.googleusercontent.com",
-  "frame-src https://www.youtube-nocookie.com https://www.youtube.com",
+  `script-src 'self' ${VLIBRAS} 'wasm-unsafe-eval' blob:`,
+  `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${VLIBRAS}`,
+  `font-src https://fonts.gstatic.com ${VLIBRAS} data:`,
+  "img-src 'self' data: blob: https:",
+  `media-src 'self' blob: ${VLIBRAS}`,
+  "worker-src 'self' blob:",
+  `connect-src 'self' https://script.google.com https://script.googleusercontent.com ${VLIBRAS} blob: data:`,
+  `frame-src https://www.youtube-nocookie.com https://www.youtube.com ${VLIBRAS}`,
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'"
