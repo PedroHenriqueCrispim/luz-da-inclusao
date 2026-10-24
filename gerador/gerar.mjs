@@ -18,10 +18,13 @@
  *   RECURSOS_VIVOS "sim" liga Luz, avaliação, pedido de palestra e métricas (envios para o Apps Script).
  *   SITE_ORIGEM    endereço do site sem barra no fim (teste: https://pedrohenriquecrispim.github.io)
  *   INDEXAR        "sim" deixa o Google indexar; "nao" (área de teste) pede para o Google ignorar
+ *   DOMINIO        domínio próprio (grava o arquivo CNAME que o GitHub Pages usa). Vazio = sem domínio.
+ *   Arquivos soltos na raiz do repositório (PDFs, imagens) e a pasta kids/ são copiados para o site,
+ *   para os links antigos continuarem funcionando.
  *   DADOS_ARQUIVO  (só para teste local) arquivo JSON no lugar da porta
  */
 
-import { mkdir, writeFile, readFile, rm } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, rm, readdir, cp } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { dirname, join, normalize, extname, resolve } from 'node:path';
@@ -38,6 +41,9 @@ const PARALELO = 4;
 const ORIGEM = String(process.env.SITE_ORIGEM || '').replace(/\/+$/, '');
 const INDEXAR = String(process.env.INDEXAR || '').toLowerCase() === 'sim';
 if (ORIGEM && !/^https:\/\/[a-z0-9.-]+$/i.test(ORIGEM)) throw new Error('SITE_ORIGEM inválido');
+const DOMINIO = String(process.env.DOMINIO || '').trim().toLowerCase();
+if (DOMINIO && !/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(DOMINIO)) throw new Error('DOMINIO inválido');
+const RAIZ_REPO = resolve(AQUI, '..');
 const urlCompleta = (r) => ORIGEM + (r === 'inicio' ? BASE : BASE + r + '/');
 
 /* ------------------------------------------------------------------ Utilidades seguras */
@@ -220,6 +226,24 @@ async function gravarArquivos(d, portal, versao) {
   for (const [slug, c] of Object.entries(d.conteudos || {})) if (SLUG_OK.test(slug)) await gravar(`dados/conteudos/${slug}.json`, dado(c));
   for (const [id, t] of Object.entries(d.termos || {})) if (SLUG_OK.test(id)) await gravar(`dados/termos/${id}.json`, dado(t));
   await writeFile(join(SAIDA, '.nojekyll'), '');
+  if (DOMINIO) await writeFile(join(SAIDA, 'CNAME'), DOMINIO + '\n');
+  await copiarArquivosAntigos();
+}
+
+/** PDFs, imagens e a pasta kids/ que já estavam no repositório continuam com o mesmo endereço. */
+async function copiarArquivosAntigos() {
+  const itens = await readdir(RAIZ_REPO, { withFileTypes: true });
+  let n = 0;
+  for (const it of itens) {
+    if (it.isFile() && /^[a-z0-9._-]+\.(pdf|png|jpe?g|webp|gif|svg|ico)$/i.test(it.name)) {
+      await cp(join(RAIZ_REPO, it.name), join(SAIDA, it.name));
+      n++;
+    } else if (it.isDirectory() && it.name === 'kids') {
+      await cp(join(RAIZ_REPO, 'kids'), join(SAIDA, 'kids'), { recursive: true });
+      n++;
+    }
+  }
+  console.log(`Arquivos antigos copiados (PDFs, imagens, kids): ${n}.`);
 }
 
 /* ------------------------------------------------------------------ 3. Pré-montagem com o Chrome */
