@@ -1,0 +1,62 @@
+# Gera o site do Projeto Luz da Inclusão a partir da planilha (via Apps Script).
+# Roda sozinho todo dia às 6h (horário de Brasília) e também pelo botão "Run workflow".
+# Segurança: não usa ações de terceiros nem senhas pessoais; só o token temporário do próprio GitHub,
+# com permissão apenas para gravar neste repositório e pedir a publicação do GitHub Pages.
+name: Gerar site
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * *'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: gerar-site
+  cancel-in-progress: false
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PORTAL_API: https://script.google.com/macros/s/AKfycbwONG8yYX2Q9LOJ3ffeqS2h3gIYKaGj71aYM9fMziDqCK9rIM5Pj5aTImEZwTZD_J_y/exec?api=site
+      BASE_PATH: /luz-da-inclusao/site-novo/
+      SAIDA: site-novo
+    steps:
+      - name: Baixar o repositório
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" repo
+          cd repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+
+      - name: Gerar as páginas
+        working-directory: repo
+        run: |
+          node --version
+          node gerador/gerar.mjs
+
+      - name: Salvar no repositório
+        working-directory: repo
+        run: |
+          git add "$SAIDA"
+          if git diff --cached --quiet; then
+            echo "Nenhuma mudança no site."
+          else
+            git commit -m "Site atualizado automaticamente"
+            git push
+          fi
+
+      - name: Pedir a publicação no GitHub Pages
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds" || echo "O GitHub Pages vai publicar na próxima atualização automática."
