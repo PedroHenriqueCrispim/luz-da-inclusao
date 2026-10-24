@@ -27,7 +27,7 @@ jobs:
       BASE_PATH: /luz-da-inclusao/site-novo/
       SAIDA: site-novo
       CHROME: google-chrome
-      RECURSOS_VIVOS: nao
+      RECURSOS_VIVOS: sim
     steps:
       - name: Baixar o repositório
         env:
