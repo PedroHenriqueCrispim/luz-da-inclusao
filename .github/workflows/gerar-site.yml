@@ -2,6 +2,7 @@
 # Roda sozinho todo dia às 6h (horário de Brasília) e também pelo botão "Run workflow".
 # Segurança: não usa ações de terceiros nem senhas pessoais; só o token temporário do próprio GitHub,
 # com permissão apenas para gravar neste repositório e pedir a publicação do GitHub Pages.
+# O computador fica fixo no Ubuntu 24.04, para atualizações do GitHub não mudarem nada sem a gente saber.
 name: Gerar site
 
 on:
@@ -19,12 +20,14 @@ concurrency:
 
 jobs:
   gerar:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
     env:
       PORTAL_API: https://script.google.com/macros/s/AKfycbwONG8yYX2Q9LOJ3ffeqS2h3gIYKaGj71aYM9fMziDqCK9rIM5Pj5aTImEZwTZD_J_y/exec?api=site
       BASE_PATH: /luz-da-inclusao/site-novo/
       SAIDA: site-novo
+      CHROME: google-chrome
+      RECURSOS_VIVOS: nao
     steps:
       - name: Baixar o repositório
         env:
@@ -39,6 +42,7 @@ jobs:
         working-directory: repo
         run: |
           node --version
+          google-chrome --version
           node gerador/gerar.mjs
 
       - name: Salvar no repositório
