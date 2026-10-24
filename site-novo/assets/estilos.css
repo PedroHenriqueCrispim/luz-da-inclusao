@@ -1,13 +1,6 @@
-/* Estilos do portal Projeto Luz da Inclusão (gerado a partir dos arquivos Styles do Apps Script). */
+/* Styles */
 
-/* ===== Styles ===== */
-/* =====================================================================
-   Projeto Luz da Inclusão — Estilos
-   Conceito: uma luz acesa na noite. Azul profundo + amarelo da luz,
-   com vermelho, verde e laranja como cores de apoio.
-   Tipografia: Bricolage Grotesque (títulos) + Atkinson Hyperlegible
-   (texto) — fonte criada para máxima legibilidade, inclusive baixa visão.
-   ===================================================================== */
+ 
 
 :root {
   --azul: #2448B8;
@@ -89,7 +82,7 @@ a { color: var(--azul); }
   flex-shrink: 0;
 }
 
-/* ---------- Foco visível (azul no claro, amarelo no escuro) ---------- */
+ 
 :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
 .escuro :focus-visible { outline-color: var(--amarelo); }
 main:focus, h1:focus, section:focus { outline: none; }
@@ -102,7 +95,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 }
 .pular:focus { top: 1rem; }
 
-/* ---------- Cores por item ---------- */
+ 
 .c-azul     { --cor: var(--azul); }
 .c-amarelo  { --cor: var(--amarelo); }
 .c-vermelho { --cor: var(--vermelho); }
@@ -113,7 +106,7 @@ main:focus, h1:focus, section:focus { outline: none; }
   --cor-suave: color-mix(in srgb, var(--cor) 14%, var(--creme));
 }
 
-/* ---------- Botões ---------- */
+ 
 .botao {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
   min-height: 50px; padding: 0.75rem 1.5rem;
@@ -136,7 +129,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .botao--link:hover { color: var(--amarelo); }
 .botao[disabled] { opacity: 0.6; cursor: wait; }
 
-/* ---------- Topo ---------- */
+ 
 .topo {
   position: sticky; top: 0; z-index: 50;
   background: var(--noite); color: var(--creme);
@@ -180,7 +173,7 @@ main:focus, h1:focus, section:focus { outline: none; }
   .topo__link[aria-current="page"] { color: var(--tinta); background: var(--amarelo); font-weight: 700; }
 }
 
-/* ---------- Menu móvel ---------- */
+ 
 .menu-movel {
   position: fixed; inset: 0; z-index: 60;
   display: flex; flex-direction: column;
@@ -206,7 +199,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .menu-movel__rodape a { color: var(--amarelo); }
 @keyframes menu-entra { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
-/* ---------- Primeira tela ---------- */
+ 
 .hero {
   position: relative; overflow: hidden;
   padding: 1.5rem 0 5.5rem;
@@ -242,7 +235,7 @@ main:focus, h1:focus, section:focus { outline: none; }
   fill: var(--creme);
 }
 
-/* ---------- Lâmpada (elemento-assinatura) ---------- */
+ 
 .lamp-vidro { fill: rgba(250, 245, 234, 0.05); stroke: var(--amarelo); stroke-width: 4; }
 .lamp-peca, .lamp-base { fill: var(--amarelo); }
 .lamp-base--2 { opacity: 0.8; }
@@ -252,7 +245,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .lamp-stop2 { stop-color: var(--amarelo); stop-opacity: 0; }
 .marca__simbolo .lamp-vidro { stroke-width: 10; fill: none; }
 
-/* Momento único de animação: a luz acende ao abrir a página */
+ 
 .lampada--acende .lamp-brilho { animation: acende-brilho 1.6s ease-out 0.2s both; }
 .lampada--acende .lamp-peca { animation: acende-peca 0.7s cubic-bezier(.2,.9,.3,1.3) 0.15s both; transform-box: fill-box; transform-origin: center; }
 .lampada--acende .lamp-raios line { animation: acende-raio 0.5s ease-out both; }
@@ -267,12 +260,12 @@ main:focus, h1:focus, section:focus { outline: none; }
 @keyframes acende-peca { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
 @keyframes acende-raio { from { opacity: 0; } to { opacity: 0.8; } }
 
-/* ---------- Seções ---------- */
+ 
 .secao { padding-block: clamp(3.5rem, 10vw, 6.5rem); }
 .titulo-secao { font-size: clamp(1.9rem, 6.5vw, 3rem); max-width: 20ch; }
 .intro { color: var(--texto-suave); font-size: 1.12rem; max-width: 56ch; }
 
-/* Pilares: os quatro verbos como tipografia */
+ 
 .pilares__lista {
   list-style: none; margin: 2.25rem 0 0; padding: 0;
   display: grid; gap: 2rem 1.75rem; grid-template-columns: 1fr;
@@ -292,7 +285,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 }
 .pilar__texto { color: var(--texto-suave); margin: 0; }
 
-/* Princípio central */
+ 
 .principio { background: var(--branco); }
 .principio__caixa { display: grid; gap: 1.5rem; }
 .principio__frase {
@@ -308,7 +301,7 @@ main:focus, h1:focus, section:focus { outline: none; }
   .principio__peca { width: 72px; height: 72px; grid-row: span 2; margin-top: 0.4rem; }
 }
 
-/* Nossa base */
+ 
 .base__grade { display: grid; gap: 2.25rem; align-items: center; }
 @media (min-width: 900px) { .base__grade { grid-template-columns: 0.85fr 1.15fr; gap: 4rem; } }
 .base__texto p { color: var(--texto-suave); font-size: 1.1rem; max-width: 44ch; }
@@ -343,7 +336,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .versiculo__contexto p { color: var(--claro); font-size: 1rem; }
 .versiculo__contexto strong { color: var(--creme); }
 
-/* Temas */
+ 
 .temas { background: var(--branco); }
 .temas__grade {
   list-style: none; margin: 2.5rem 0 0; padding: 0;
@@ -369,7 +362,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .cartao__titulo { margin: 1.1rem 0 0.35rem; font-size: 1.45rem; color: var(--tinta); }
 .cartao__texto { margin: 0; color: var(--texto-suave); }
 
-/* Convite Instagram */
+ 
 .convite { padding-bottom: clamp(3.5rem, 10vw, 6.5rem); }
 .convite__caixa {
   position: relative; overflow: hidden;
@@ -383,7 +376,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .convite__decor { position: absolute; right: -36px; bottom: -36px; width: 200px; height: 200px; color: var(--amarelo); opacity: 0.18; stroke-width: 1.2; }
 .convite__breve { font-weight: 700; color: var(--amarelo); margin: 0.5rem 0 0; }
 
-/* ---------- Páginas internas ---------- */
+ 
 .pagina-topo {
   position: relative; overflow: hidden;
   padding: 1.75rem 0 5rem;
@@ -397,7 +390,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .trilha li + li::before { content: "/"; opacity: 0.5; }
 .trilha a { color: var(--amarelo); display: inline-flex; align-items: center; min-height: 44px; }
 
-/* ---------- Estados (carregando, vazio, erro) ---------- */
+ 
 .estado {
   display: grid; justify-items: center; gap: 0.5rem; text-align: center;
   padding: clamp(3.5rem, 12vw, 6rem) var(--margem);
@@ -415,7 +408,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .estado__texto { margin: 0 0 1rem; color: var(--texto-suave); max-width: 40ch; }
 @keyframes respira { 0%, 100% { transform: scale(0.92); opacity: 0.8; } 50% { transform: scale(1); opacity: 1; } }
 
-/* ---------- Rodapé ---------- */
+ 
 .faixa-cores {
   height: 6px;
   background: linear-gradient(90deg,
@@ -447,7 +440,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 
 .noscript { padding: 2rem var(--margem); text-align: center; font-weight: 700; }
 
-/* ---------- Movimento reduzido ---------- */
+ 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -457,14 +450,13 @@ main:focus, h1:focus, section:focus { outline: none; }
   }
 }
 
-/* ===== Styles2 ===== */
-/* =====================================================================
-   Fase 2 — Entenda, páginas de conteúdo e Glossário
-   ===================================================================== */
+/* Styles2 */
+
+ 
 
 .pagina-topo__titulo--longo { font-size: clamp(2rem, 7.5vw, 3.2rem); max-width: 22ch; }
 
-/* ---------- Índice Entenda ---------- */
+ 
 .entenda { padding-block: clamp(2.5rem, 8vw, 4.5rem) clamp(3rem, 9vw, 5rem); }
 .entenda__principio {
   margin: 0 0 clamp(2.5rem, 8vw, 4rem); max-width: 26ch;
@@ -492,7 +484,7 @@ main:focus, h1:focus, section:focus { outline: none; }
   text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;
 }
 
-/* Ponte para o glossário */
+ 
 .ponte {
   display: grid; gap: 1.25rem; align-items: center;
   margin-top: clamp(3rem, 9vw, 4.5rem);
@@ -504,7 +496,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .ponte__titulo { font-size: clamp(1.4rem, 5vw, 1.8rem); margin-bottom: 0.35rem; }
 .ponte__texto { margin: 0; color: var(--texto-suave); max-width: 48ch; }
 
-/* ---------- Página de conteúdo ---------- */
+ 
 .leitura { display: grid; gap: 1.75rem; padding-block: clamp(2.25rem, 7vw, 4rem); }
 @media (min-width: 1020px) {
   .leitura { grid-template-columns: 250px minmax(0, 1fr); gap: 3.5rem; align-items: start; }
@@ -571,7 +563,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .relacionados { background: var(--branco); }
 .relacionados .titulo-secao { margin-bottom: 1.75rem; }
 
-/* ---------- Glossário ---------- */
+ 
 .glossario { padding-block: clamp(2.25rem, 7vw, 4rem) clamp(3rem, 9vw, 5rem); }
 
 .busca {
@@ -638,16 +630,15 @@ main:focus, h1:focus, section:focus { outline: none; }
 .glossario__vazio { display: grid; justify-items: center; gap: 0.5rem; text-align: center; padding: 3rem 0; }
 .glossario__vazio[hidden] { display: none; }
 
-/* ===== Styles3 ===== */
-/* =====================================================================
-   Fase 3 — Na prática e Fé e inclusão
-   ===================================================================== */
+/* Styles3 */
+
+ 
 
 .entenda .ponte + .ponte { margin-top: 1rem; }
 .ponte-final { padding-bottom: clamp(3rem, 9vw, 5rem); }
 .ponte-final .ponte { margin-top: 0; }
 
-/* ---------- Fé e inclusão ---------- */
+ 
 .fe { padding-block: clamp(2.5rem, 8vw, 4.5rem) clamp(3rem, 9vw, 5rem); }
 
 .fe__intro { max-width: 46rem; }
@@ -704,10 +695,9 @@ main:focus, h1:focus, section:focus { outline: none; }
 .fe .ponte { margin-top: clamp(3rem, 9vw, 4.5rem); }
 .fe__credito { margin: 2rem 0 0; font-size: 0.9rem; color: var(--texto-suave); }
 
-/* ===== Styles4 ===== */
-/* =====================================================================
-   Fase 4 — Projeto (Quem somos, Projeto em ação, SUPA) e Palestras
-   ===================================================================== */
+/* Styles4 */
+
+ 
 
 .botao--escuro-cheio { background: var(--noite); color: var(--creme); border-color: var(--noite); }
 .botao--escuro-cheio:hover { background: var(--tinta); border-color: var(--tinta); }
@@ -716,7 +706,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .projeto__secao { margin-top: clamp(3rem, 9vw, 4.5rem); }
 .projeto__secao .intro { margin-bottom: 1.75rem; }
 
-/* ---------- Quem somos ---------- */
+ 
 .sobre__narrativa { display: grid; gap: 2rem; }
 .sobre__titulo { font-size: clamp(1.35rem, 5vw, 1.7rem); margin-bottom: 0.6rem; }
 .sobre__imagem { width: 100%; max-width: 40rem; border-radius: var(--raio); margin-bottom: 1.25rem; }
@@ -738,7 +728,7 @@ main:focus, h1:focus, section:focus { outline: none; }
   color: var(--noite);
 }
 
-/* ---------- Projeto em ação ---------- */
+ 
 .acoes__lista {
   list-style: none; margin: 1.25rem 0 0; padding: 0;
   display: grid; gap: 1.1rem; grid-template-columns: 1fr;
@@ -767,7 +757,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 }
 .acoes__vazio .estado__titulo { font-size: clamp(1.3rem, 5vw, 1.7rem); max-width: none; }
 
-/* ---------- SUPA ---------- */
+ 
 .supa {
   padding: clamp(2rem, 7vw, 3.5rem);
   border-radius: var(--raio-grande);
@@ -780,7 +770,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .supa__bloco p, .supa__bloco li { color: var(--claro); }
 .supa__imagem { width: 100%; border-radius: var(--raio); margin-bottom: 1rem; }
 
-/* ---------- Palestras ---------- */
+ 
 .palestras__abertura {
   margin: 0; max-width: 30ch;
   font-family: var(--fonte-titulo); font-weight: 700;
@@ -813,10 +803,9 @@ main:focus, h1:focus, section:focus { outline: none; }
 
 .palestras__convite { margin-top: clamp(3rem, 9vw, 4.5rem); }
 
-/* ===== Styles5 ===== */
-/* =====================================================================
-   Palestras: pregações, quem ministra, onde já estivemos e formulário
-   ===================================================================== */
+/* Styles5 */
+
+ 
 
 .palestra { display: flex; flex-direction: column; }
 .palestra__base { margin: 0 0 0.4rem; font-weight: 700; font-size: 0.95rem; color: var(--cor-forte); }
@@ -831,7 +820,7 @@ main:focus, h1:focus, section:focus { outline: none; }
 .realizada { display: flex; flex-direction: column; border-radius: var(--raio); background: var(--branco); overflow: hidden; }
 .realizada__tema { margin: 0 0 0.6rem; font-weight: 700; color: var(--noite); }
 
-/* Quem está à frente / Quem ministra */
+ 
 .pessoa {
   display: grid; gap: 1.5rem; align-items: center;
   margin-top: clamp(3rem, 9vw, 4.5rem);
@@ -858,12 +847,12 @@ main:focus, h1:focus, section:focus { outline: none; }
 .pessoa__bio p { margin: 0 0 0.75rem; max-width: 60ch; color: var(--texto-suave); }
 .pessoa .botao { margin-top: 0.5rem; }
 
-/* Séries de pregações */
+ 
 .serie + .serie { margin-top: 2.5rem; }
 .serie__titulo { font-size: clamp(1.3rem, 5vw, 1.6rem); margin-bottom: 1rem; color: var(--noite); }
 h4.palestra__titulo { font-family: var(--fonte-titulo); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--tinta); }
 
-/* ---------- Formulário ---------- */
+ 
 .solicitar {
   padding: clamp(1.5rem, 6vw, 3rem);
   border-radius: var(--raio-grande); background: var(--branco);
@@ -918,23 +907,22 @@ textarea.campo__controle { min-height: 120px; resize: vertical; }
 .solicitar__link { font-weight: 700; }
 .solicitar__privacidade { margin: 0.75rem 0 0; font-size: 0.92rem; color: var(--texto-suave); }
 
-/* Menu: o rótulo "Palestras e pregações" é longo; o menu horizontal só aparece com espaço suficiente */
+ 
 .topo__link, .marca__nome { white-space: nowrap; }
 @media (min-width: 980px) and (max-width: 1199px) {
   .topo__nav { display: none; }
   .topo__menu-btn { display: inline-flex; }
 }
 
-/* Ministrações e ponte entre páginas */
+ 
 .ministracoes__publico { margin-top: clamp(2rem, 7vw, 3rem); max-width: 34rem; }
 .palestras > .ponte { margin-top: clamp(3rem, 9vw, 4.5rem); }
 
-/* ===== Styles6 ===== */
-/* =====================================================================
-   Fase 5 — Busca global, termos do glossário e conteúdo relacionado
-   ===================================================================== */
+/* Styles6 */
 
-/* ---------- Botão de busca no topo ---------- */
+ 
+
+ 
 .topo__acoes { display: flex; align-items: center; gap: 0.5rem; }
 .topo__busca-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
@@ -951,7 +939,7 @@ textarea.campo__controle { min-height: 120px; resize: vertical; }
   .topo__busca-rotulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
 }
 
-/* ---------- Diálogo de busca ---------- */
+ 
 .busca-dialogo { position: fixed; inset: 0; z-index: 70; display: flex; justify-content: center; align-items: flex-start; }
 .busca-dialogo[hidden] { display: none; }
 .busca-dialogo__fundo { position: absolute; inset: 0; background: rgba(15, 27, 76, 0.72); }
@@ -996,33 +984,32 @@ textarea.campo__controle { min-height: 120px; resize: vertical; }
 .busca-vazia { padding: 1.5rem 0.25rem; }
 .busca-vazia .estado__titulo { font-size: 1.3rem; max-width: none; }
 
-/* ---------- Palavras do glossário dentro de um conteúdo ---------- */
+ 
 .termos { margin-top: 2.5rem; padding: 1.25rem 1.35rem; border-radius: 18px; background: var(--branco); }
 .termos__titulo { margin: 0 0 0.85rem !important; padding: 0 !important; border: 0 !important; font-size: 1.15rem !important; }
 .termos__lista { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .termos__lista li { padding: 0 !important; }
 .termos__lista li::before { display: none; }
 
-/* ---------- Conteúdo relacionado de outra área ---------- */
+ 
 .cartao__area {
   align-self: flex-start; margin-bottom: 0.6rem; padding: 0.2rem 0.65rem;
   border-radius: 999px; background: var(--branco); color: var(--cor-forte);
   font-weight: 700; font-size: 0.82rem;
 }
 
-/* ---------- Contraste: o amarelo escuro precisa ser mais escuro para texto pequeno (WCAG AA) ---------- */
+ 
 .c-amarelo { --cor-forte: color-mix(in srgb, var(--amarelo) 45%, #000); }
 
-/* ---------- Termo aberto por link direto ---------- */
+ 
 .glossario .termo { scroll-margin-top: 16rem; }
 .termo--destaque { box-shadow: 0 0 0 3px var(--amarelo); }
 
-/* ===== Styles7 ===== */
-/* =====================================================================
-   Avaliação: botão fixo, cartão de estrelas e "Este conteúdo foi útil?"
-   ===================================================================== */
+/* Styles7 */
 
-/* ---------- Botão fixo ---------- */
+ 
+
+ 
 .aval-botao {
   position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40;
   display: inline-flex; align-items: center; gap: 0.45rem;
@@ -1036,7 +1023,7 @@ textarea.campo__controle { min-height: 120px; resize: vertical; }
 .aval-botao__estrela { color: var(--amarelo); font-size: 1.15rem; line-height: 1; }
 .aval-botao[hidden], body.travado .aval-botao { display: none; }
 
-/* ---------- Cartão (não bloqueia a página) ---------- */
+ 
 .aval-cartao {
   position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 45;
   width: min(390px, calc(100% - 32px));
@@ -1094,7 +1081,7 @@ textarea.campo__controle { min-height: 120px; resize: vertical; }
 .aval-status:empty { display: none; }
 .aval-obrigado .aval-titulo { margin-right: 2.5rem; }
 
-/* ---------- "Este conteúdo foi útil?" ---------- */
+ 
 .util {
   margin-top: 2.5rem; padding: 1.25rem 1.35rem;
   border-radius: 18px; background: var(--branco);
@@ -1112,15 +1099,14 @@ textarea.campo__controle { min-height: 120px; resize: vertical; }
 .util__status { margin: 0; font-weight: 700; color: color-mix(in srgb, var(--vermelho) 70%, #000); }
 .util__status:empty { display: none; }
 
-/* No rodapé, o botão fixo não deve cobrir o último link */
+ 
 .rodape { padding-bottom: 5rem; }
 
-/* ===== Styles8 ===== */
-/* =====================================================================
-   Acessibilidade: botão, painel e os modos escolhidos pelo visitante
-   ===================================================================== */
+/* Styles8 */
 
-/* ---------- Botão fixo (canto inferior esquerdo) ---------- */
+ 
+
+ 
 .a11y-botao {
   position: fixed; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40;
   display: inline-flex; align-items: center; justify-content: center;
@@ -1132,7 +1118,7 @@ textarea.campo__controle { min-height: 120px; resize: vertical; }
 .a11y-botao__icone { display: inline-flex; }
 body.travado .a11y-botao { display: none; }
 
-/* ---------- Painel ---------- */
+ 
 .a11y-painel {
   position: fixed; left: 16px; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); z-index: 55;
   width: min(380px, calc(100% - 32px)); max-height: calc(100vh - 100px - 4.25rem); max-height: calc(100dvh - 100px - 4.25rem); overflow-y: auto;
@@ -1186,30 +1172,30 @@ body.travado .a11y-botao { display: none; }
 .a11y-status { margin: 0; font-size: 0.92rem; font-weight: 700; color: var(--noite); }
 .a11y-status:empty { display: none; }
 
-/* O cartão de avaliação também fica acima do topo e nunca passa da altura da tela */
+ 
 .aval-cartao { z-index: 55; max-height: calc(100vh - 40px - 4.25rem); max-height: calc(100dvh - 40px - 4.25rem); }
 
-/* Tradutor de Libras desativado: esconde tudo o que o VLibras colocou na página */
+ 
 html.a11y-sem-libras [vw], html.a11y-sem-libras [vw-access-button], html.a11y-sem-libras [vw-plugin-wrapper] { display: none !important; }
 
-/* ---------- Modos escolhidos pelo visitante ---------- */
+ 
 
-/* Tamanho do texto (o portal usa rem, então tudo cresce junto) */
+ 
 html.a11y-fonte-1 { font-size: 112.5%; }
 html.a11y-fonte-2 { font-size: 125%; }
 html.a11y-fonte-3 { font-size: 140%; }
 
-/* Mais espaçamento para leitura */
+ 
 html.a11y-espaco p, html.a11y-espaco li, html.a11y-espaco dd, html.a11y-espaco label, html.a11y-espaco .cartao__texto {
   line-height: 1.95 !important; letter-spacing: 0.05em !important; word-spacing: 0.14em !important;
 }
 
-/* Pausar animações */
+ 
 html.a11y-sem-animacao *, html.a11y-sem-animacao *::before, html.a11y-sem-animacao *::after {
   animation: none !important; transition: none !important; scroll-behavior: auto !important;
 }
 
-/* Destacar links */
+ 
 html.a11y-links a:not(.botao):not(.cartao):not(.busca-res):not(.marca):not(.chip) {
   text-decoration: underline !important; text-decoration-thickness: 2px !important; text-underline-offset: 4px;
   background: rgba(255, 200, 61, 0.35); border-radius: 4px;
@@ -1217,10 +1203,8 @@ html.a11y-links a:not(.botao):not(.cartao):not(.busca-res):not(.marca):not(.chip
 html.a11y-links .cartao, html.a11y-links .busca-res, html.a11y-links .chip--link { outline: 3px solid var(--azul); outline-offset: 2px; }
 html.a11y-links .botao { outline: 3px solid var(--amarelo); outline-offset: 2px; }
 
-/* Cores para daltonismo — paleta Okabe-Ito, distinguível nos tipos mais comuns
-   (protanopia, deuteranopia e tritanopia). O vermelho e o verde do projeto viram
-   laranja-avermelhado e verde-azulado, com brilhos bem diferentes entre si. */
-/* !important: as cores da aba CONFIG são aplicadas direto na página e precisam ser substituídas */
+ 
+ 
 html.a11y-daltonismo {
   --azul: #0072B2 !important; --vermelho: #D55E00 !important; --verde: #009E73 !important;
   --laranja: #E69F00 !important; --amarelo: #F0E442 !important;
@@ -1228,7 +1212,7 @@ html.a11y-daltonismo {
 html.a11y-daltonismo .aval-estrela--ativa { color: #E69F00; }
 html.a11y-daltonismo .campo__controle[aria-invalid="true"] { border-style: dashed; border-width: 3px; }
 
-/* Alto contraste */
+ 
 html.a11y-contraste {
   --creme: #FFFFFF !important; --branco: #FFFFFF !important; --tinta: #000000 !important; --texto: #000000 !important;
   --texto-suave: #000000 !important; --noite: #000000 !important; --azul: #0033CC !important;
@@ -1258,28 +1242,27 @@ html.a11y-contraste .artigo h2 { border-top-color: #000000; }
 html.a11y-contraste .artigo li::before { background: #000000; }
 html.a11y-contraste .aval-botao, html.a11y-contraste .a11y-botao { background: #000000; border-color: #FFE14D; }
 
-/* ===== Styles9 ===== */
-/* =====================================================================
-   Explorar: símbolos, calendário, história, materiais e identidade
-   ===================================================================== */
+/* Styles9 */
+
+ 
 
 .explorar-pagina { padding-block: clamp(2.25rem, 7vw, 4rem) clamp(3rem, 9vw, 5rem); }
 .explorar-pagina > .ponte { margin-top: clamp(3rem, 9vw, 4.5rem); }
 
-/* Logo do topo: o ícone da lâmpada nunca encolhe (com o menu e a busca, o topo ficou mais cheio) */
+ 
 .marca, .marca__simbolo, .marca__img { flex-shrink: 0; }
 
-/* Rodapé com a coluna "Explore" */
+ 
 @media (min-width: 820px) { .rodape__grade { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
 
-/* ---------- Explore também ---------- */
+ 
 .explorar { margin-top: clamp(3rem, 9vw, 4.5rem); }
 .explorar__grade { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
 @media (min-width: 680px) { .explorar__grade { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1020px) { .explorar__grade { grid-template-columns: repeat(4, 1fr); } }
 .explorar__cartao .cartao__titulo { font-size: 1.25rem; }
 
-/* ---------- Símbolos ---------- */
+ 
 .simbolos__grupo { margin-top: clamp(2.5rem, 8vw, 3.5rem); }
 .simbolos__grade { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: 1fr; }
 @media (min-width: 720px) { .simbolos__grade { grid-template-columns: 1fr 1fr; } }
@@ -1304,7 +1287,7 @@ html.a11y-contraste .aval-botao, html.a11y-contraste .a11y-botao { background: #
 .simbolo__bloco--atencao { padding: 0.75rem 0.9rem; border-radius: 14px; background: color-mix(in srgb, var(--amarelo) 22%, var(--creme)); }
 .simbolo__bloco--atencao dd { color: var(--tinta); }
 
-/* ---------- Calendário ---------- */
+ 
 .cal { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
 .cal > * { min-width: 0; }
 @media (min-width: 980px) { .cal { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; } .cal__detalhe { position: sticky; top: 5.5rem; } }
@@ -1370,7 +1353,7 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .cal__ano-lista ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.25rem; }
 .cal__nota { margin-top: 1.5rem; color: var(--texto-suave); font-size: 0.95rem; }
 
-/* ---------- História ---------- */
+ 
 .historia__caminhos .intro { margin-bottom: 1.25rem; }
 .caminhos { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
 @media (min-width: 900px) { .caminhos { grid-template-columns: repeat(4, 1fr); } }
@@ -1399,7 +1382,7 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .linha__titulo { font-size: 1.2rem; margin: 0 0 0.3rem; }
 .linha__caixa p { margin: 0; color: var(--texto-suave); }
 
-/* ---------- Materiais ---------- */
+ 
 .materiais__grade { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: 1fr; }
 @media (min-width: 760px) { .materiais__grade { grid-template-columns: 1fr 1fr; } }
 .material { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.5rem; border-radius: var(--raio); background: var(--branco); border-top: 6px solid var(--cor); }
@@ -1410,7 +1393,7 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .material__info dd { margin: 0; }
 .material__baixar { margin-top: auto; align-self: flex-start; }
 
-/* ---------- Nossa identidade (página Projeto) ---------- */
+ 
 .identidade__lista { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: 1fr; }
 @media (min-width: 760px) { .identidade__lista { grid-template-columns: 1fr 1fr; } }
 .identidade__item { display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.25rem; border-radius: var(--raio); background: var(--branco); }
@@ -1425,12 +1408,11 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .identidade__titulo { margin: 0 0 0.35rem; font-size: 1.2rem; }
 .identidade__texto p { margin: 0 0 0.5rem; color: var(--texto-suave); }
 
-/* ===== Styles10 ===== */
-/* =====================================================================
-   Menu do topo com os principais + painel "Tudo"; Inclusão na prática
-   ===================================================================== */
+/* Styles10 */
 
-/* ---------- Botão "Tudo" (visível em todas as telas) ---------- */
+ 
+
+ 
 .topo__menu-btn { display: inline-flex; gap: 0.45rem; width: auto; min-width: 50px; padding: 0 0.85rem; font-family: var(--fonte-texto); font-weight: 700; font-size: 0.95rem; }
 .topo__menu-btn--fechar { width: 50px; padding: 0; }
 .topo__menu-rotulo { display: none; }
@@ -1440,7 +1422,7 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
   .topo__menu-btn:hover { background: rgba(250, 245, 234, 0.08); }
 }
 
-/* ---------- Painel "Tudo" ---------- */
+ 
 .menu-fundo { position: fixed; inset: 0; z-index: 59; background: rgba(10, 14, 40, 0.55); }
 .menu-fundo[hidden] { display: none; }
 @media (min-width: 760px) {
@@ -1468,7 +1450,7 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .tudo__sub:hover { color: var(--creme); border-left-color: var(--amarelo); }
 .tudo ul li:last-child .tudo__sub { margin-bottom: 0.25rem; }
 
-/* ---------- Inclusão na prática: portas dos ambientes ---------- */
+ 
 .portas { margin-top: clamp(2rem, 6vw, 3rem); }
 .portas__grade { list-style: none; margin: 1.1rem 0 0; padding: 0; display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
 @media (min-width: 620px) { .portas__grade { grid-template-columns: 1fr 1fr; } }
@@ -1479,13 +1461,11 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .portas__todos { margin: clamp(3rem, 9vw, 4.5rem) 0 0; font-size: clamp(1.6rem, 5vw, 2.1rem); }
 .ambiente__grade { margin-top: clamp(1.5rem, 5vw, 2.25rem); }
 
-/* ===== Styles11 ===== */
-/* =====================================================================
-   Entenda: mosaico de temas, "Comece por aqui", cartões com tempo de leitura,
-   "Em 30 segundos", barra de leitura e compartilhar no WhatsApp
-   ===================================================================== */
+/* Styles11 */
 
-/* ---------- Mosaico ---------- */
+ 
+
+ 
 .mosaico { margin-top: clamp(1.75rem, 5vw, 2.5rem); }
 .mosaico__grade { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .mosaico__grade > li { min-width: 0; }
@@ -1517,7 +1497,7 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 }
 .entenda > .portas__todos { margin-bottom: 1.5rem; }
 
-/* ---------- Comece por aqui ---------- */
+ 
 .comece { margin-top: clamp(2rem, 6vw, 3rem); padding: clamp(1.25rem, 4vw, 1.75rem); border-radius: var(--raio-grande); background: var(--noite); color: var(--creme); }
 .comece__titulo { margin: 0; font-size: clamp(1.5rem, 5vw, 2rem); color: var(--creme); }
 .comece__texto { margin: 0.35rem 0 1.1rem; color: var(--claro); }
@@ -1533,23 +1513,23 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .comece__info strong { font-size: 1.05rem; }
 .comece__info span { font-size: 0.92rem; color: var(--claro); }
 
-/* ---------- Cartões com tempo de leitura ---------- */
+ 
 .cartao__rodape { margin-top: auto; padding-top: 0.75rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
 .cartao__rodape .cartao__ler { margin-top: 0; }
 .cartao__tempo { font-size: 0.85rem; font-weight: 600; color: var(--texto-suave); }
 
-/* ---------- Em 30 segundos ---------- */
+ 
 .rapido { margin: 0 0 2rem; padding: 1.25rem 1.4rem; border-radius: 20px; background: var(--cor-suave); border-left: 6px solid var(--cor); }
 .rapido__titulo { margin: 0 0 0.6rem !important; padding: 0 !important; border: 0 !important; font-size: 1.15rem !important; color: var(--noite); }
 .rapido__lista { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; }
 .rapido__lista li::before { display: none; }
 .rapido__lista li { padding-left: 0 !important; }
 
-/* ---------- Barra de leitura ---------- */
+ 
 .progresso { position: fixed; left: 0; right: 0; top: 0; z-index: 55; height: 4px; background: transparent; pointer-events: none; }
 .progresso__barra { display: block; height: 100%; background: var(--amarelo); transform-origin: left center; transform: scaleX(0); }
 
-/* ---------- Compartilhar ---------- */
+ 
 .compartilhar { margin-top: 2.5rem; padding: 1.1rem 1.25rem; border-radius: 18px; background: var(--branco); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .compartilhar__texto { margin: 0 !important; font-weight: 700; color: var(--noite); }
 .whats {
@@ -1562,13 +1542,11 @@ button.cal__dia[aria-pressed="true"] .cal__ponto { background: currentColor; }
 .termo .whats--pequeno { align-self: flex-start; }
 html.a11y-contraste .whats { background: #000; border: 2px solid #000; }
 
-/* ===== Styles12 ===== */
-/* =====================================================================
-   Layout: índice em lista ("Todos os temas", "Todos os conteúdos",
-   "Vale em qualquer lugar") e régua única de espaçamento entre seções.
-   ===================================================================== */
+/* Styles12 */
 
-/* ---------- Régua de espaçamento ---------- */
+ 
+
+ 
 :root { --espaco-secao: clamp(3rem, 8vw, 4.5rem); --espaco-titulo: clamp(1.1rem, 3vw, 1.5rem); }
 .entenda > .portas__todos { margin-top: var(--espaco-secao); margin-bottom: var(--espaco-titulo); }
 .entenda > .portas, .entenda > .secao-extra, .entenda > .explorar, .entenda > .comece { margin-top: var(--espaco-secao); }
@@ -1578,9 +1556,9 @@ html.a11y-contraste .whats { background: #000; border: 2px solid #000; }
 .secao-extra > .portas__todos { margin: 0; }
 .secao-extra__texto { margin: 0.4rem 0 var(--espaco-titulo); color: var(--texto-suave); max-width: 60ch; }
 
-/* ---------- Índice em lista ---------- */
+ 
 .indice { display: grid; gap: 1.1rem; grid-template-columns: minmax(0, 1fr); }
-/* Duas colunas como um mural: os blocos se encaixam sem deixar buracos */
+ 
 @media (min-width: 900px) {
   .indice { display: block; columns: 2; column-gap: 1.1rem; }
   .indice--um { columns: 1; }
@@ -1614,11 +1592,9 @@ html.a11y-contraste .whats { background: #000; border: 2px solid #000; }
 html.a11y-contraste .indice__bloco { border: 2px solid #000 !important; }
 html.a11y-contraste .indice__item:hover { background: #FFE14D; }
 
-/* ===== Styles13 ===== */
-/* =====================================================================
-   Faixa permanente do portal Kids (página inicial)
-   Mesmo conceito do Kids: luz acesa na noite, bolas coloridas saindo da tela.
-   ===================================================================== */
+/* Styles13 */
+
+ 
 .kids-faixa { padding-block: clamp(1rem, 4vw, 2rem) clamp(2.5rem, 7vw, 4rem); }
 .kids-faixa__caixa {
   position: relative; overflow: hidden; display: grid; gap: 1.5rem; align-items: center;
@@ -1647,14 +1623,11 @@ html.a11y-contraste .indice__item:hover { background: #FFE14D; }
 }
 html.a11y-contraste .kids-faixa__bola { display: none; }
 
-/* ===== Styles14 ===== */
-/* =====================================================================
-   Styles14 — Pacote de recursos: página do termo, checklist, imagem
-   para stories, assistente, acolhimento e privacidade.
-   Segue as cores, fontes, raios e botões já definidos nos Styles 1–13.
-   ===================================================================== */
+/* Styles14 */
 
-/* ---------- Botões de compartilhar lado a lado ---------- */
+ 
+
+ 
 .compartilhar__botoes { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .img-btn {
   display: inline-flex; align-items: center; gap: 0.5rem; min-height: 48px; padding: 0 1.15rem;
@@ -1667,7 +1640,7 @@ html.a11y-contraste .kids-faixa__bola { display: none; }
 .img-btn--pequeno { min-height: 44px; margin-top: 1rem; font-size: 0.92rem; }
 .cal__detalhe .img-btn--pequeno, .palavra .img-btn--pequeno { align-self: flex-start; }
 
-/* ---------- Janela da imagem para stories ---------- */
+ 
 .cartao-img { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .cartao-img[hidden] { display: none; }
 .cartao-img__fundo { position: absolute; inset: 0; background: rgba(10, 14, 40, 0.72); }
@@ -1705,7 +1678,7 @@ html.a11y-contraste .kids-faixa__bola { display: none; }
 }
 .cartao-img__dica--destaque { background: color-mix(in srgb, var(--amarelo) 30%, var(--creme)); color: var(--tinta); }
 
-/* ---------- Glossário: lista com cartões clicáveis ---------- */
+ 
 .termo--resumo { position: relative; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
 .termo--resumo:hover { box-shadow: 0 0 0 2px var(--cor); }
 .termo__link { color: var(--tinta); text-decoration: none; }
@@ -1717,7 +1690,7 @@ html.a11y-contraste .kids-faixa__bola { display: none; }
 .termo--resumo:hover .termo__seta { transform: translateX(3px); }
 .termo__seta { transition: transform 0.2s; }
 
-/* ---------- Página do termo ---------- */
+ 
 .termo-pag { padding-block: 2.25rem 3.5rem; display: grid; gap: 2.5rem; }
 .termo-pag__artigo { max-width: 760px; display: grid; gap: 1.25rem; }
 .termo-pag__meta { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; }
@@ -1757,7 +1730,7 @@ html.a11y-contraste .kids-faixa__bola { display: none; }
 .termo-nav__nome { font-family: var(--fonte-titulo); font-weight: 700; font-size: 1.1rem; }
 .termo-pag__voltar { margin: 0; }
 
-/* ---------- Acolhimento (CVV) ---------- */
+ 
 .acolhe {
   display: flex; gap: 1rem; align-items: flex-start; margin: 0;
   padding: 1.35rem 1.4rem; border-radius: var(--raio);
@@ -1775,7 +1748,7 @@ html.a11y-contraste .kids-faixa__bola { display: none; }
 .busca-acolhe { list-style: none; padding: 0.25rem 0; }
 .busca-vazia__ia { margin-top: 0.75rem; }
 
-/* ---------- Checklist ---------- */
+ 
 .ck { padding-block: 2rem 3.5rem; max-width: 880px; }
 .ck-intro__texto { font-size: clamp(1.15rem, 3.4vw, 1.35rem); font-weight: 700; color: var(--noite); margin-bottom: 0.6rem; }
 .ck-privado {
@@ -1864,7 +1837,7 @@ html.a11y-contraste .kids-faixa__bola { display: none; }
   .ck-area__trilho { grid-column: 1 / -1; grid-row: 2; }
 }
 
-/* ---------- Privacidade ---------- */
+ 
 .priv { padding-block: 2.25rem 3.5rem; max-width: 780px; display: grid; gap: 1.75rem; }
 .priv__resumo { padding: 1.5rem 1.6rem; border-radius: var(--raio); background: var(--branco); border-top: 6px solid var(--verde); }
 .priv__titulo { font-size: clamp(1.3rem, 4.2vw, 1.6rem); margin-bottom: 0.6rem; }
@@ -1878,29 +1851,26 @@ html.a11y-contraste .kids-faixa__bola { display: none; }
 }
 .priv__data { margin: 0; color: var(--texto-suave); font-size: 0.92rem; }
 
-/* ---------- Assistente (peças ainda usadas pela página da Luz) ---------- */
+ 
 @keyframes ia-pulso { 0%, 100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 .ia-isca { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
-/* ---------- Alto contraste ---------- */
+ 
 html.a11y-contraste .img-btn { border-color: #000; color: #000; background: #fff; }
 html.a11y-contraste .termo-rel, html.a11y-contraste .ck-bloco,
 html.a11y-contraste .acolhe, html.a11y-contraste .priv__resumo { border: 2px solid #000; }
 html.a11y-contraste .ck-item__marca { border-color: #000; }
 
-/* ---------- Impressão: só o conteúdo ---------- */
+ 
 @media print {
   .cartao-img, .img-btn { display: none !important; }
 }
 
-/* ===== Styles15 ===== */
-/* =====================================================================
-   Styles15 — Página "Pergunte à Luz", destaque no topo e convite na
-   página inicial. A "Luz" é a lâmpada do projeto (sem personagem
-   humano), que acende enquanto pensa.
-   ===================================================================== */
+/* Styles15 */
 
-/* ---------- Topo: item com destaque ---------- */
+ 
+
+ 
 .topo__ia-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
   min-width: 50px; height: 50px; padding: 0 0.85rem; border-radius: 16px;
@@ -1912,7 +1882,7 @@ html.a11y-contraste .ck-item__marca { border-color: #000; }
 .topo__ia-rotulo { display: none; }
 @media (min-width: 560px) { .topo__ia-rotulo { display: inline; } }
 @media (min-width: 1200px) { .topo__ia-btn { display: none; } }
-/* Celulares estreitos: botões do topo um pouco menores para caber a lâmpada, a busca e o menu */
+ 
 @media (max-width: 420px) {
   .topo__acoes { gap: 0.3rem; }
   .topo__ia-btn, .topo__busca-btn, .topo__menu-btn { min-width: 44px; width: 44px; height: 44px; padding: 0; border-radius: 14px; }
@@ -1927,7 +1897,7 @@ html.a11y-contraste .ck-item__marca { border-color: #000; }
 .topo__link--ia[aria-current="page"] { background: var(--amarelo) !important; color: var(--tinta) !important; }
 @media (max-width: 1399px) { .topo__ia-longo { display: none; } }
 
-/* ---------- Avatar (a lâmpada) ---------- */
+ 
 .luz-avatar { display: inline-grid; place-items: center; flex-shrink: 0; }
 .luz-avatar__svg { width: 100%; height: 100%; overflow: visible; }
 .luz-avatar .lamp-brilho { opacity: 0.55; transition: opacity 0.4s; }
@@ -1949,7 +1919,7 @@ html.a11y-sem-animacao .luz-avatar .lamp-brilho, html.a11y-sem-animacao .luz-ava
 .luz-avatar--msg { width: 34px; height: 38px; margin-top: 0.15rem; }
 .luz-avatar--convite { width: clamp(96px, 16vw, 150px); }
 
-/* ---------- Página inteira em azul-noite ---------- */
+ 
 body.luz-na-pagina {
   background-color: var(--noite);
   background-image:
@@ -1960,7 +1930,7 @@ body.luz-na-pagina {
 }
 body.luz-na-pagina main { background: transparent; }
 
-/* ---------- O "app" da Luz: ocupa a tela abaixo do topo ---------- */
+ 
 .luz-app {
   position: relative; display: flex; flex-direction: column;
   height: calc(100vh - 4.75rem); height: calc(100dvh - 4.75rem); min-height: 520px;
@@ -1974,7 +1944,7 @@ body.luz-na-pagina main { background: transparent; }
 .luz-app__corpo > .luz-app__coluna { flex: 1; display: flex; flex-direction: column; padding-block: 1.25rem 1.5rem; }
 .luz-app__base { flex-shrink: 0; padding-block: 0.5rem 0.9rem; background: linear-gradient(to top, var(--noite) 65%, rgba(15, 27, 76, 0)); }
 
-/* Cabeçalho: aparece quando a conversa começa */
+ 
 .luz-topo {
   flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   width: 100%; max-width: 800px; margin-inline: auto; padding: 0.65rem var(--margem);
@@ -1998,7 +1968,7 @@ body.luz-na-pagina main { background: transparent; }
 .luz-app[data-estado="inicio"] .luz-topo__nova { visibility: hidden; }
 .luz-topo__a11y { display: none; padding: 0; }
 
-/* ---------- Boas-vindas ---------- */
+ 
 .luz-boas-vindas { margin-block: auto; text-align: center; display: grid; justify-items: center; gap: 0.25rem; padding-block: 0.5rem 1rem; }
 .luz-app[data-estado="conversa"] .luz-boas-vindas { display: none; }
 .luz-avatar--grande { width: clamp(84px, 11vw, 124px); margin-bottom: 0.35rem; animation: luz-respira 4s ease-in-out infinite; }
@@ -2027,7 +1997,7 @@ body.luz-na-pagina main { background: transparent; }
 .luz-tema__pergunta:hover { color: var(--creme); }
 .luz-tema__pergunta:hover::after { transform: translateX(3px); opacity: 1; }
 
-/* ---------- Conversa ---------- */
+ 
 .luz-conversa { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
 .luz-conversa:empty { display: none; }
 .luz-msg { display: flex; gap: 0.8rem; align-items: flex-start; min-width: 0; animation: luz-entra 0.3s ease-out; }
@@ -2099,7 +2069,7 @@ html.a11y-sem-animacao .luz-msg, html.a11y-sem-animacao .luz-avatar--grande { an
 .luz-pontos span:nth-child(2) { animation-delay: 0.15s; }
 .luz-pontos span:nth-child(3) { animation-delay: 0.3s; }
 
-/* ---------- Campo de pergunta ---------- */
+ 
 .luz-form__caixa {
   display: flex; align-items: flex-end; gap: 0.5rem; padding: 0.4rem 0.4rem 0.4rem 1.15rem;
   border-radius: 28px; border: 1px solid rgba(250, 245, 234, 0.2);
@@ -2131,7 +2101,7 @@ html.a11y-sem-animacao .luz-msg, html.a11y-sem-animacao .luz-avatar--grande { an
 .luz-contador, .luz-restantes { flex-basis: 100%; color: var(--amarelo); font-weight: 700; }
 .luz-contador[hidden], .luz-restantes[hidden] { display: none; }
 
-/* ---------- Janela "Como a Luz funciona" ---------- */
+ 
 .luz-como { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 1rem; }
 .luz-como[hidden] { display: none; }
 .luz-como__fundo { position: absolute; inset: 0; background: rgba(5, 8, 25, 0.65); }
@@ -2149,7 +2119,7 @@ html.a11y-sem-animacao .luz-msg, html.a11y-sem-animacao .luz-avatar--grande { an
 .luz-como__lista strong { color: var(--creme); }
 .luz-como__lista a { color: var(--amarelo); }
 
-/* ---------- Telas menores ---------- */
+ 
 @media (max-width: 899px) {
   body.luz-na-pagina .aval-botao, body.luz-na-pagina .a11y-botao { display: none; }
   .luz-topo__a11y { display: inline-flex; }
@@ -2169,7 +2139,7 @@ html.a11y-sem-animacao .luz-msg, html.a11y-sem-animacao .luz-avatar--grande { an
   .luz-app__base { padding-bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px)); }
 }
 
-/* ---------- Convite na página inicial ---------- */
+ 
 .luz-convite { padding-block: clamp(2rem, 6vw, 3.5rem); }
 .luz-convite__caixa {
   display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem;
@@ -2185,9 +2155,8 @@ html.a11y-sem-animacao .luz-msg, html.a11y-sem-animacao .luz-avatar--grande { an
 .luz-chips--claro .chip:hover { border-color: var(--amarelo); color: var(--amarelo); }
 @media (max-width: 520px) { .luz-convite .luz-avatar--convite { display: none; } }
 
-/* ---------- Barras de rolagem: amarela sobre o azul-noite, no portal todo ---------- */
-/* Chrome/Edge usam as regras ::-webkit-scrollbar abaixo (sem as setinhas brancas).
-   As propriedades padrão ficam só para o Firefox: no Chrome elas desligariam o visual personalizado. */
+ 
+ 
 @supports not selector(::-webkit-scrollbar) {
   html { scrollbar-width: thin; scrollbar-color: rgba(255, 200, 61, 0.6) var(--noite); }
   .luz-conversa { scrollbar-width: thin; scrollbar-color: rgba(255, 200, 61, 0.55) transparent; }
@@ -2198,13 +2167,13 @@ html.a11y-sem-animacao .luz-msg, html.a11y-sem-animacao .luz-avatar--grande { an
 ::-webkit-scrollbar-thumb:hover { background: var(--amarelo); }
 ::-webkit-scrollbar-button { display: none; width: 0; height: 0; background: transparent; }
 ::-webkit-scrollbar-corner { background: var(--noite); }
-/* Rolagem de dentro da conversa */
+ 
 .luz-conversa::-webkit-scrollbar { width: 8px; }
 .luz-conversa::-webkit-scrollbar-track { background: transparent; }
 .luz-conversa::-webkit-scrollbar-thumb { background: rgba(255, 200, 61, 0.45); border: 2px solid transparent; background-clip: padding-box; border-radius: 999px; }
 .luz-conversa::-webkit-scrollbar-thumb:hover { background-color: var(--amarelo); }
 
-/* ---------- Rodapé mais baixo: colunas curtas e links mais juntos ---------- */
+ 
 .rodape { padding-top: 2.75rem; }
 .rodape__grade { gap: 1.75rem 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .rodape__coluna a { overflow-wrap: anywhere; }
@@ -2225,13 +2194,13 @@ html.a11y-sem-animacao .luz-msg, html.a11y-sem-animacao .luz-avatar--grande { an
 }
 .rodape__base { margin-top: 2rem; }
 
-/* ---------- Materiais: "Para que serve" e "Como usar" ---------- */
+ 
 .material__guia { display: grid; gap: 0.6rem; margin: 0.25rem 0 0.35rem; }
 .material__bloco { padding: 0.75rem 0.9rem; border-radius: 14px; background: var(--cor-suave); }
 .material__bloco p { margin: 0; font-size: 0.95rem; line-height: 1.5; }
 .material__rotulo { font-weight: 700; font-size: 0.85rem !important; color: var(--cor-forte); margin-bottom: 0.2rem !important; }
 
-/* ---------- Alto contraste ---------- */
+ 
 html.a11y-contraste .topo__link--ia, html.a11y-contraste .topo__ia-btn { border-color: #FFE14D; color: #FFE14D !important; }
 html.a11y-contraste .luz-tema, html.a11y-contraste .luz-form__caixa, html.a11y-contraste .luz-fonte { border: 2px solid #FFFFFF; }
 html.a11y-contraste .luz-msg__corpo, html.a11y-contraste .luz-campo, html.a11y-contraste .luz-tema__pergunta { color: #FFFFFF; }
