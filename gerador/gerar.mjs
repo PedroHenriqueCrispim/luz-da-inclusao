@@ -15,7 +15,7 @@
  *   BASE_PATH      caminho base (teste: /luz-da-inclusao/site-novo/ · com domínio próprio: /)
  *   SAIDA          pasta onde o site é gravado
  *   CHROME         programa do Chrome (no GitHub: google-chrome)
- *   RECURSOS_VIVOS "sim" liga Luz/avaliação/pedido (Etapa 4). Enquanto não, a Luz fica escondida.
+ *   RECURSOS_VIVOS "sim" liga Luz, avaliação, pedido de palestra e métricas (envios para o Apps Script).
  *   DADOS_ARQUIVO  (só para teste local) arquivo JSON no lugar da porta
  */
 
@@ -163,7 +163,8 @@ async function gravarArquivos(d, portal, versao) {
   await gravar('assets/estilos.css', d.cliente.css);
   await gravar('assets/app.js', d.cliente.js);
   await gravar('assets/ponte.js', await readFile(join(AQUI, 'ponte.js'), 'utf8'));
-  await gravar('assets/boot.js', `window.__SITE__=${jsonJs({ base: BASE, versao })};window.__BOOT__=${jsonJs({ ok: true, data: portal })};\n`);
+  const api = VIVOS && /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec\?api=site$/.test(API) ? API.replace(/\?api=site$/, '') : '';
+  await gravar('assets/boot.js', `window.__SITE__=${jsonJs({ base: BASE, versao, api })};window.__BOOT__=${jsonJs({ ok: true, data: portal })};\n`);
 
   const dado = (o) => JSON.stringify({ ok: true, data: o === undefined ? null : o });
   await gravar('dados/portal.json', dado(portal));
