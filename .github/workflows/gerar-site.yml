@@ -28,6 +28,8 @@ jobs:
       SAIDA: site-novo
       CHROME: google-chrome
       RECURSOS_VIVOS: sim
+      SITE_ORIGEM: https://pedrohenriquecrispim.github.io
+      INDEXAR: nao
     steps:
       - name: Baixar o repositório
         env:
