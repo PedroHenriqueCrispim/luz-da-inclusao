@@ -1,8 +1,9 @@
 /**
  * Ponte do site — faz o código do portal (feito para o Apps Script) funcionar no site.
  *
- * - google.script.run  → lê os arquivos de dados do próprio site (dados/*.json).
- *                         Envios (avaliação, pedido de palestra, Luz) ficam desligados até a Etapa 4.
+ * - google.script.run  → leituras vêm dos arquivos de dados do próprio site (dados/*.json);
+ *                         envios (Luz, avaliação, pedido de palestra, métricas) vão para o Apps Script,
+ *                         que só aceita essa lista fechada de ações e valida tudo de novo.
  * - google.script.history / url → endereços de verdade (/entenda/tea/), com o botão Voltar funcionando.
  * - Links "#/pagina" viram endereços reais, para o Google conseguir seguir.
  * - Modo de pré-montagem (?prerender=1): usado só pelo gerador, para salvar a página pronta.
@@ -14,6 +15,24 @@
   if (!SITE) return;
   var BASE = SITE.base;
   var ROTA_OK = /^[a-z0-9-]{1,40}(\/[a-z0-9-]{1,80})?$/;
+  var PRE_MONTAGEM = /[?&]prerender=1(&|$)/.test(location.search);
+  var API_OK = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/;
+
+  /* Envios para o Apps Script (desligados durante a pré-montagem, para não contar visitas falsas). */
+  if (!PRE_MONTAGEM && API_OK.test(SITE.api || '')) {
+    SITE.enviar = function (nome, args, ok, falha) {
+      fetch(SITE.api, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ fn: nome, args: args.slice(0, 1) }),
+        credentials: 'omit',
+        redirect: 'follow'
+      }).then(function (r) {
+        if (!r.ok) throw new Error('indisponivel');
+        return r.json();
+      }).then(ok, falha);
+    };
+  }
 
   function rotaDoEndereco() {
     if (/^#\/[a-z0-9-]/.test(location.hash)) return location.hash.slice(2);
@@ -100,7 +119,7 @@
   }).observe(document.documentElement, { childList: true, subtree: true });
 
   /* ---------- Pré-montagem (só para o gerador) ---------- */
-  if (/[?&]prerender=1(&|$)/.test(location.search)) {
+  if (PRE_MONTAGEM) {
     var espera = null;
     window.addEventListener('luz:rota', function () {
       clearTimeout(espera);
