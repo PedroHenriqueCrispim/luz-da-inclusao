@@ -125,11 +125,15 @@ function listarRotas(d, portal) {
 // Liberamos SÓ esses endereços oficiais. 'wasm-unsafe-eval' é exigido pelo avatar 3D e não libera
 // o eval comum de JavaScript.
 const VLIBRAS = 'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/';
-const CSP = [
+let FONTES_LOCAIS = false;
+function montarCSP() {
+  const fontesGoogle = FONTES_LOCAIS ? '' : ' https://fonts.googleapis.com';
+  const arquivosFontes = FONTES_LOCAIS ? "'self'" : 'https://fonts.gstatic.com';
+  return [
   "default-src 'self'",
   `script-src 'self' ${VLIBRAS} 'wasm-unsafe-eval' blob:`,
-  `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${VLIBRAS}`,
-  `font-src https://fonts.gstatic.com ${VLIBRAS} data:`,
+  `style-src 'self' 'unsafe-inline'${fontesGoogle} ${VLIBRAS}`,
+  `font-src ${arquivosFontes} ${VLIBRAS} data:`,
   "img-src 'self' data: blob: https:",
   `media-src 'self' blob: ${VLIBRAS}`,
   "worker-src 'self' blob:",
@@ -139,6 +143,7 @@ const CSP = [
   "form-action 'self'",
   "object-src 'none'"
 ].join('; ');
+}
 
 const FAVICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0F1B4C"/><path d="M24 44h16M26 50h12M32 12a14 14 0 0 0-8 25.5c1.3 1 2 2.5 2 4V42h12v-.5c0-1.5.7-3 2-4A14 14 0 0 0 32 12z" fill="none" stroke="#FFC83D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 
@@ -190,7 +195,7 @@ function pagina(portal, versao, { titulo, descricao, topo = '', main = '', rodap
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="${esc(CSP)}">
+<meta http-equiv="Content-Security-Policy" content="${esc(montarCSP())}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(tituloFinal)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -198,9 +203,9 @@ ${seo}
 <meta name="theme-color" content="#0F1B4C">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="${FAVICON}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+${FONTES_LOCAIS
+  ? `<link rel="stylesheet" href="${BASE}assets/fontes.css?v=${versao}">`
+  : '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">'}
 <link rel="stylesheet" href="${BASE}assets/estilos.css?v=${versao}">
 </head>
 <body>
@@ -251,6 +256,46 @@ async function copiarArquivosAntigos() {
     }
   }
   console.log(`Arquivos antigos copiados (PDFs, imagens, kids): ${n}.`);
+}
+
+/* ------------------------------------------------------------------ Fontes no próprio site */
+
+/**
+ * Baixa as fontes do Google Fonts UMA vez, durante a geração, e guarda no próprio site.
+ * Assim, quem visita não faz nenhum pedido aos servidores do Google (privacidade) e a página
+ * carrega mais rápido. Se o download falhar, o site continua usando o Google Fonts (nada quebra).
+ */
+async function baixarFontes() {
+  const URL_FONTES = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap';
+  const NAVEGADOR = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+  try {
+    const r = await fetch(URL_FONTES, { headers: { 'user-agent': NAVEGADOR } });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    let css = await r.text();
+    const urls = [...new Set(css.match(/https:\/\/fonts\.gstatic\.com\/[^)\s'"]+/g) || [])];
+    if (!urls.length) throw new Error('nenhuma fonte na resposta');
+    let i = 0;
+    for (const u of urls) {
+      if (!/^https:\/\/fonts\.gstatic\.com\/s\/[a-z0-9]+\/v\d+\/[A-Za-z0-9_.-]+\.woff2$/.test(u)) throw new Error('endereço de fonte inesperado');
+      const f = await fetch(u);
+      if (!f.ok) throw new Error('HTTP ' + f.status + ' na fonte');
+      const nome = 'fonte-' + (++i) + '.woff2';
+      await gravarBinario('assets/fontes/' + nome, Buffer.from(await f.arrayBuffer()));
+      css = css.split(u).join(BASE + 'assets/fontes/' + nome);
+    }
+    await gravar('assets/fontes.css', css);
+    FONTES_LOCAIS = true;
+    console.log(`Fontes guardadas no próprio site: ${i} arquivo(s).`);
+  } catch (e) {
+    FONTES_LOCAIS = false;
+    console.log('Fontes: o site vai usar o Google Fonts nesta atualização (' + e.message + ').');
+  }
+}
+
+async function gravarBinario(rel, buffer) {
+  const destino = join(SAIDA, rel);
+  await mkdir(dirname(destino), { recursive: true });
+  await writeFile(destino, buffer);
 }
 
 /* ------------------------------------------------------------------ 3. Pré-montagem com o Chrome */
@@ -382,6 +427,7 @@ async function principal() {
   const portal = ajustarPortal(d.portal);
   const versao = createHash('sha256').update(String(d.geradoEm) + d.cliente.js.length).digest('hex').slice(0, 10);
   await gravarArquivos(d, portal, versao);
+  await baixarFontes();
   const rotas = listarRotas(d, portal);
   console.log(`Gerando ${rotas.length} páginas...`);
   const { feitas, falhas } = await preMontar(rotas, portal, versao);
