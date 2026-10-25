@@ -4083,7 +4083,7 @@
         h('div', { class: 'priv__resumo' },
           h('h2', { class: 'priv__titulo' }, 'Em resumo'),
           h('ul', { class: 'priv__lista priv__lista--check' },
-            h('li', null, 'Não usamos cookies, anúncios nem rastreadores.'),
+            h('li', null, 'Não usamos cookies, anúncios nem ferramentas de rastreamento.'),
             h('li', null, 'Não pedimos cadastro e não sabemos quem você é.'),
             h('li', null, 'Contamos as visitas de forma anônima, só para saber quais conteúdos ajudam mais.'),
             h('li', null, 'Nunca vendemos nem repassamos dados.'))),
@@ -4118,8 +4118,22 @@
         bloco('Checklist e imagens para compartilhar', [
           'O checklist "Minha igreja é inclusiva?" e as imagens para stories funcionam inteiramente no seu aparelho. Nada do que você marca ou gera é enviado ao portal.'
         ]),
-        bloco('Onde o portal funciona', [
-          'O portal funciona na plataforma Google Apps Script, e a página de entrada fica no GitHub Pages. Como em qualquer site, essas empresas podem registrar dados técnicos de acesso (como o endereço IP) para o funcionamento e a segurança dos serviços delas, de acordo com as políticas de privacidade de cada uma. O Projeto Luz da Inclusão não tem acesso a esses registros.'
+        bloco('Recursos de acessibilidade', [
+          [
+            'Ouvir esta página: usa a voz do seu próprio navegador. Dependendo do navegador e da voz escolhida, o texto pode ser processado pelo serviço do fabricante (por exemplo, o Google no Chrome).',
+            'Tradutor de Libras: usa o VLibras, serviço gratuito do Governo Federal. Ele só é carregado quando você liga o tradutor; a partir daí, o texto que você pede para traduzir é enviado ao VLibras, que segue a política de privacidade do próprio serviço.'
+          ]
+        ]),
+        bloco('Onde o site funciona', [
+          'O site projetoluzdainclusao.com.br é publicado no GitHub Pages. Os conteúdos vêm de uma planilha privada do projeto e as partes que precisam de servidor (o assistente, as avaliações, os pedidos de palestra e a contagem anônima de visitas) funcionam no Google Apps Script. O domínio é registrado no Registro.br.',
+          'As fontes de letras e os arquivos do site ficam no próprio site: abrir as páginas não faz pedidos a serviços de anúncios ou de rastreamento.',
+          'Como em qualquer site, o GitHub e o Google podem registrar dados técnicos de acesso (como o endereço IP) para o funcionamento e a segurança dos serviços deles, de acordo com as políticas de privacidade de cada um. O Projeto Luz da Inclusão não tem acesso a esses registros.'
+        ]),
+        bloco('Como o site aparece no Google', [
+          'Usamos o Google Search Console para saber se o site aparece nas pesquisas do Google e com quais palavras ele é encontrado. Ele não coloca nada no seu navegador: mostra só números gerais das pesquisas feitas no próprio Google, sem identificar ninguém.'
+        ]),
+        bloco('Links para outros sites', [
+          'Botões como "Compartilhar no WhatsApp", o Instagram do projeto e os textos oficiais das leis levam para outros sites, que têm as próprias regras de privacidade.'
         ]),
         direitos,
         h('p', { class: 'priv__data' }, 'Última atualização: ' + ATUALIZADO + '.')
