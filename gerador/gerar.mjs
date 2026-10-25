@@ -120,10 +120,11 @@ function listarRotas(d, portal) {
 /* ------------------------------------------------------------------ 2. Arquivos do site */
 
 /** Política de segurança: o navegador só carrega o que vem de origens permitidas. */
-// VLibras (tradutor de Libras do governo federal) precisa carregar o próprio código e o avatar 3D
-// a partir de vlibras.gov.br. Liberamos SÓ esse endereço oficial ('wasm-unsafe-eval' é exigido pelo
-// avatar 3D; ele não libera o eval comum de JavaScript).
-const VLIBRAS = 'https://vlibras.gov.br https://*.vlibras.gov.br';
+// VLibras (tradutor de Libras do governo federal) carrega o código e o avatar 3D de vlibras.gov.br,
+// que redireciona para a cópia oficial do governo no jsDelivr (pasta spbgovbr-vlibras).
+// Liberamos SÓ esses endereços oficiais. 'wasm-unsafe-eval' é exigido pelo avatar 3D e não libera
+// o eval comum de JavaScript.
+const VLIBRAS = 'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/';
 const CSP = [
   "default-src 'self'",
   `script-src 'self' ${VLIBRAS} 'wasm-unsafe-eval' blob:`,
