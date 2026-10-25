@@ -145,14 +145,13 @@ function montarCSP() {
 ].join('; ');
 }
 
-const FAVICON = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0F1B4C"/><path d="M24 44h16M26 50h12M32 12a14 14 0 0 0-8 25.5c1.3 1 2 2.5 2 4V42h12v-.5c0-1.5.7-3 2-4A14 14 0 0 0 32 12z" fill="none" stroke="#FFC83D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 
 /** Dados estruturados (schema.org) que ajudam o Google a entender a página. */
 function dadosEstruturados(rota, portal, titulo, descricao) {
   const c = portal.config;
   const nome = c.NOME_PROJETO || 'Projeto Luz da Inclusão';
   if (!ORIGEM) return null;
-  const org = { '@type': 'Organization', name: nome, url: ORIGEM + BASE, logo: ORIGEM + BASE + 'assets/og.png' };
+  const org = { '@type': 'Organization', name: nome, url: ORIGEM + BASE, logo: ORIGEM + BASE + 'favicon.png' };
   const insta = /^https:\/\//.test(c.INSTAGRAM_URL || '') ? String(c.INSTAGRAM_URL).split('?')[0] : '';
   if (insta) org.sameAs = [insta];
   if (rota === 'inicio') {
@@ -202,7 +201,8 @@ function pagina(portal, versao, { titulo, descricao, topo = '', main = '', rodap
 ${seo}
 <meta name="theme-color" content="#0F1B4C">
 <meta name="format-detection" content="telephone=no">
-<link rel="icon" href="${FAVICON}">
+<link rel="icon" type="image/png" sizes="512x512" href="${BASE}favicon.png">
+<link rel="apple-touch-icon" href="${BASE}favicon.png">
 ${FONTES_LOCAIS
   ? `<link rel="stylesheet" href="${BASE}assets/fontes.css?v=${versao}">`
   : '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">'}
