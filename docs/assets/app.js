@@ -384,10 +384,10 @@
         h('a', { class: 'marca', href: '#/inicio', 'data-rota': 'inicio', 'aria-label': nomeProjeto() + ', página inicial' }, marca()),
         nav.length ? h('nav', { class: 'topo__nav', 'aria-label': 'Principal' }, h('ul', null, linksDesktop)) : null,
         h('div', { class: 'topo__acoes' },
-          temAssistente ? h('a', { class: 'topo__ia-btn', href: '#/pergunte', 'data-rota': 'pergunte' },
+          temAssistente ? h('a', { class: 'topo__ia-btn', href: '#/pergunte', 'data-rota': 'pergunte', 'aria-label': 'Pergunte à Luz, a assistente do portal' },
             icone('luz'), h('span', { class: 'topo__ia-rotulo' }, 'Pergunte')) : null,
           nav.length ? h('button', {
-            class: 'topo__busca-btn', type: 'button',
+            class: 'topo__busca-btn', type: 'button', 'aria-label': 'Buscar no portal',
             onclick: function () { if (window.LUZ && window.LUZ.abrirBusca) window.LUZ.abrirBusca(); }
           }, icone('lupa'), h('span', { class: 'topo__busca-rotulo' }, 'Buscar')) : null,
           nav.length ? h('button', {
