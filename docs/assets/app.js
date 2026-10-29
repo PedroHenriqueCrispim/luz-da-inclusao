@@ -4073,7 +4073,7 @@
       : c.INSTAGRAM_URL ? h('p', null, 'Dúvidas ou pedidos sobre seus dados: fale com a gente pelo ', L.ancora(c.INSTAGRAM_URL, null, 'Instagram'), '.') : null;
 
     const direitos = bloco('Seus direitos', [
-      'Pela Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018), você pode pedir para saber, corrigir ou apagar os dados pessoais que enviou pelo formulário de palestra.'
+      'Pela LGPD, você pode pedir para saber, corrigir ou apagar os dados que enviou no pedido de palestra.'
     ]);
     if (contato) direitos.appendChild(contato);
 
@@ -4083,57 +4083,31 @@
         h('div', { class: 'priv__resumo' },
           h('h2', { class: 'priv__titulo' }, 'Em resumo'),
           h('ul', { class: 'priv__lista priv__lista--check' },
-            h('li', null, 'Não usamos cookies, anúncios nem ferramentas de rastreamento.'),
+            h('li', null, 'Não usamos cookies, anúncios nem rastreamento.'),
             h('li', null, 'Não pedimos cadastro e não sabemos quem você é.'),
-            h('li', null, 'Contamos as visitas de forma anônima, só para saber quais conteúdos ajudam mais.'),
             h('li', null, 'Nunca vendemos nem repassamos dados.'))),
-        bloco('Visitas às páginas', [
-          'Contamos quantas vezes cada página foi aberta em cada dia. Só isso: não registramos quem visitou, de onde, em que horário exato, nem guardamos qualquer identificador do seu aparelho.'
-        ]),
-        bloco('Buscas sem resultado', [
-          'Quando uma busca não encontra nada, guardamos só o texto pesquisado e o dia, para descobrir quais conteúdos ainda faltam no portal. Esses registros são apagados automaticamente depois de 90 dias.',
-          'Textos que parecem dados pessoais (com números longos, e-mails ou links) e buscas sobre temas de crise nunca são guardados.'
-        ]),
-        bloco('Avaliações', [
-          'As notas e o "este conteúdo foi útil?" são anônimos. O comentário é opcional: por favor, não escreva seu nome ou contato nele.'
-        ]),
-        bloco('Pedido de palestra ou pregação', [
-          'Os dados enviados no formulário (nome, contato, instituição e cidade) são usados só para responder ao seu pedido. Ficam numa planilha privada, que não é publicada no portal, e são anonimizados 12 meses depois de o pedido ser encerrado.'
+        bloco('O que registramos', [
+          [
+            'Visitas: só quantas vezes cada página foi aberta por dia, sem identificar ninguém.',
+            'Buscas sem resultado: só o texto pesquisado, para saber quais conteúdos faltam. São apagadas em 90 dias. Buscas com dados pessoais ou sobre crise não são guardadas.',
+            'Avaliações: anônimas. Não escreva nome ou contato no comentário.',
+            'Pedidos de palestra: nome, contato, instituição e cidade, usados só para responder. Ficam em local privado e são anonimizados após 12 meses.'
+          ]
         ]),
         assistente ? bloco('Assistente "' + (c.ASSISTENTE_NOME || 'Pergunte à Luz') + '"', [
-          'O assistente responde com base nos conteúdos do portal. Quando o assunto não está no portal, mas é dos temas do projeto, ele pode dar uma resposta geral, sempre marcada como "Resposta geral". Para gerar a resposta, sua pergunta é enviada ao Google Gemini, um serviço de inteligência artificial do Google.',
           [
-            'Não guardamos as perguntas: só contamos quantas foram feitas por dia.',
-            'Para entender continuações (como "e na escola?"), as duas últimas perguntas e respostas da conversa vão junto com a nova pergunta. A conversa fica só na página aberta e some quando você recarrega ou clica em "Nova conversa".',
-            'Cumprimentos e agradecimentos (como "oi" e "obrigado") são respondidos pelo próprio portal, sem envio ao Google.',
-            'Pelos termos do Google para o uso gratuito do Gemini, o conteúdo enviado pode ser usado pelo Google para melhorar os serviços dele. Por isso, não escreva nomes, telefones, e-mails, documentos ou detalhes sobre a saúde de alguém.',
-            'Perguntas que parecem conter dados pessoais são recusadas antes de serem enviadas.',
-            'Perguntas sobre crise (como suicídio ou automutilação) não são enviadas para a inteligência artificial: o portal mostra na hora uma mensagem de apoio com o CVV (188).',
-            'As respostas podem conter erros e não substituem profissionais. Só profissionais de saúde avaliam e diagnosticam.'
+            'Sua pergunta é enviada ao Google Gemini (inteligência artificial) para gerar a resposta. Pelos termos do Google, esse conteúdo pode ser usado para melhorar os serviços dele.',
+            'Não guardamos as perguntas.',
+            'Não escreva nomes, telefones, documentos ou detalhes de saúde de alguém.',
+            'Perguntas sobre crise não são enviadas: o site mostra na hora o CVV (188).',
+            'As respostas podem conter erros e não substituem profissionais.'
           ]
         ]) : null,
-        bloco('Preferências guardadas no seu aparelho', [
-          'As escolhas do botão de acessibilidade (tamanho do texto, contraste, cores…) e a informação de que você já viu o convite para avaliar ficam guardadas só no seu navegador, para valerem na próxima visita. Elas nunca são enviadas ao portal e você pode apagá-las limpando os dados do site no navegador.'
+        bloco('No seu aparelho', [
+          'As preferências de acessibilidade, o checklist e as imagens para stories ficam só no seu navegador e nunca são enviados.'
         ]),
-        bloco('Checklist e imagens para compartilhar', [
-          'O checklist "Minha igreja é inclusiva?" e as imagens para stories funcionam inteiramente no seu aparelho. Nada do que você marca ou gera é enviado ao portal.'
-        ]),
-        bloco('Recursos de acessibilidade', [
-          [
-            'Ouvir esta página: usa a voz do seu próprio navegador. Dependendo do navegador e da voz escolhida, o texto pode ser processado pelo serviço do fabricante (por exemplo, o Google no Chrome).',
-            'Tradutor de Libras: usa o VLibras, serviço gratuito do Governo Federal. Ele só é carregado quando você liga o tradutor; a partir daí, o texto que você pede para traduzir é enviado ao VLibras, que segue a política de privacidade do próprio serviço.'
-          ]
-        ]),
-        bloco('Onde o site funciona', [
-          'O site projetoluzdainclusao.com.br é publicado no GitHub Pages. Os conteúdos vêm de uma planilha privada do projeto e as partes que precisam de servidor (o assistente, as avaliações, os pedidos de palestra e a contagem anônima de visitas) funcionam no Google Apps Script. O domínio é registrado no Registro.br.',
-          'As fontes de letras e os arquivos do site ficam no próprio site: abrir as páginas não faz pedidos a serviços de anúncios ou de rastreamento.',
-          'Como em qualquer site, o GitHub e o Google podem registrar dados técnicos de acesso (como o endereço IP) para o funcionamento e a segurança dos serviços deles, de acordo com as políticas de privacidade de cada um. O Projeto Luz da Inclusão não tem acesso a esses registros.'
-        ]),
-        bloco('Como o site aparece no Google', [
-          'Usamos o Google Search Console para saber se o site aparece nas pesquisas do Google e com quais palavras ele é encontrado. Ele não coloca nada no seu navegador: mostra só números gerais das pesquisas feitas no próprio Google, sem identificar ninguém.'
-        ]),
-        bloco('Links para outros sites', [
-          'Botões como "Compartilhar no WhatsApp", o Instagram do projeto e os textos oficiais das leis levam para outros sites, que têm as próprias regras de privacidade.'
+        bloco('Serviços usados', [
+          'O site usa serviços do GitHub e do Google, que podem registrar dados técnicos de acesso, como o endereço IP. O tradutor de Libras é o VLibras, do Governo Federal, e só é carregado quando você o liga.'
         ]),
         direitos,
         h('p', { class: 'priv__data' }, 'Última atualização: ' + ATUALIZADO + '.')
