@@ -3,6 +3,7 @@
 # Segurança: não usa ações de terceiros nem senhas pessoais; só o token temporário do próprio GitHub,
 # com permissão apenas para gravar neste repositório e pedir a publicação do GitHub Pages.
 # O computador fica fixo no Ubuntu 24.04, para atualizações do GitHub não mudarem nada sem a gente saber.
+# Páginas feitas à mão (pasta "extras", ex.: extras/compaixao) são copiadas para dentro do site a cada geração.
 name: Gerar site
 
 on:
@@ -47,6 +48,8 @@ jobs:
           node --version
           google-chrome --version
           node gerador/gerar.mjs
+          # Páginas feitas à mão (não vêm da planilha): copiadas para dentro do site.
+          if [ -d extras ]; then cp -R extras/. "$SAIDA"/; fi
 
       - name: Salvar no repositório
         working-directory: repo
