@@ -400,7 +400,8 @@ p{font-size:30px;line-height:1.35;color:#D9DEF0}.f{position:absolute;left:0;righ
 async function gerarArquivosGoogle(rotas, portal, versao, geradoEm) {
   if (ORIGEM) {
     const dia = String(geradoEm || new Date().toISOString()).slice(0, 10);
-    const urls = rotas.map((r) => `<url><loc>${esc(urlCompleta(r))}</loc><lastmod>${dia}</lastmod></url>`).join('\n');
+    const urls = rotas.map((r) => `<url><loc>${esc(urlCompleta(r))}</loc><lastmod>${dia}</lastmod></url>`)
+      .concat(`<url><loc>${esc(ORIGEM + BASE + 'kids/')}</loc><lastmod>${dia}</lastmod></url>`).join('\n');
     await gravar('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   }
   // O robots.txt só vale quando o site estiver na raiz do domínio (Etapa 6).
