@@ -32,6 +32,8 @@ jobs:
       RECURSOS_VIVOS: sim
       SITE_ORIGEM: https://projetoluzdainclusao.com.br
       INDEXAR: sim
+      # Luz Kids: o Apps Script do Kids devolve a página pronta (só o conteúdo público) para virar o site /kids/.
+      KIDS_API: https://script.google.com/macros/s/AKfycbxthzePqYDh3kR_3ixhU4dgfPxcEKLFLH4gAlhWnmxSC4KokIkN-ZrLu4al_SpUBCtW/exec?api=site
     steps:
       - name: Baixar o repositório
         env:
@@ -50,6 +52,23 @@ jobs:
           node gerador/gerar.mjs
           # Páginas feitas à mão (não vêm da planilha): copiadas para dentro do site.
           if [ -d extras ]; then cp -R extras/. "$SAIDA"/; fi
+
+      - name: Gerar o Luz Kids
+        working-directory: repo
+        run: |
+          # Baixa a página pronta do Kids. Só troca se vier completa; se der errado, mantém a versão que já estava no ar.
+          if curl -fsSL --max-time 180 "$KIDS_API" -o /tmp/kids.html \
+             && [ "$(wc -c < /tmp/kids.html)" -gt 100000 ] \
+             && grep -q 'window.__ESTATICO__ = true' /tmp/kids.html; then
+            mkdir -p "$SAIDA/kids"
+            cp /tmp/kids.html "$SAIDA/kids/index.html"
+            echo "Luz Kids atualizado."
+          elif git show "HEAD:$SAIDA/kids/index.html" 2>/dev/null | grep -q 'window.__ESTATICO__ = true'; then
+            git show "HEAD:$SAIDA/kids/index.html" > "$SAIDA/kids/index.html"
+            echo "Não deu para gerar o Luz Kids agora. A versão anterior continua no ar."
+          else
+            echo "Não deu para gerar o Luz Kids agora. Continua a página antiga, que abre o Apps Script."
+          fi
 
       - name: Salvar no repositório
         working-directory: repo
